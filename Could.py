@@ -52,7 +52,6 @@ for x in range(Y):
 
 
 def kirim_():
-    startAcc = time.time()
     data = {
         "id_rompi": "001",
         "id_sensor": "All01",
@@ -69,13 +68,6 @@ def kirim_():
         'https://bysonics-alpha001.herokuapp.com/dataAllSensor/save')
     response = requests.post(url_POST, None, data)
     print(f"Request returned {response.status_code} : '{response.reason}'")
-    # payload = response.content
-    # import pprint
-    # pp = pprint.PrettyPrinter(indent=1)
-    # pp.pprint(payload)
-    end = time.time()
-    runTime = end - startAcc
-    print(f"Runtime of the program is {runTime} Second")
 
 
 def CS_(real2, imag2):
