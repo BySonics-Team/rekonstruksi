@@ -6,8 +6,6 @@ import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
 import json
 
-os.system('cls')
-
 
 Y = 52
 M = 129
@@ -195,9 +193,9 @@ if __name__ == '__main__':
                 end = time.time()
                 runTime = end - start
                 print(f"Runtime of the program is {runTime} Second")
-            else:
-                os.system('cls')
                 print(f'Waiting for new data, Id = {Id}')
+            else:
+                pass
         except:
             print("Error")
             try:
