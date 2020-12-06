@@ -4,10 +4,10 @@ import sys
 import requests
 import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
-import pymongo
-import dns
+import json
 
-broker_address = "192.168.43.246"
+os.system('cls')
+
 
 Y = 52
 M = 129
@@ -16,7 +16,6 @@ L = Y/N*100
 Q = [[0], [0]]
 pId = []
 Bstart = False
-sensor = 1
 real = []
 imag = []
 realZ = []
@@ -35,6 +34,8 @@ SUHU = []
 AcceX = []
 AcceY = []
 AcceZ = []
+ID = []
+DataX = []
 start = time.time()
 
 for x in range(Y-2):
@@ -69,21 +70,17 @@ def kirim_():
     url_POST = (
         'https://bysonics-alpha001.herokuapp.com/dataAllSensor/save')
     response = requests.post(url_POST, None, data)
-    print(
-        f"Request returned {response.status_code} : '{response.reason}'")
-    payload = response.content
-    import pprint
-    pp = pprint.PrettyPrinter(indent=1)
-    pp.pprint(payload)
-    x = collection.delete_many({})
-    x.deleted_count
+    print(f"Request returned {response.status_code} : '{response.reason}'")
+    # payload = response.content
+    # import pprint
+    # pp = pprint.PrettyPrinter(indent=1)
+    # pp.pprint(payload)
     end = time.time()
     runTime = end - startAcc
     print(f"Runtime of the program is {runTime} Second")
 
 
 def CS_(real2, imag2):
-    print(sensor)
 
     omp1 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp1.fit(Q, real2)
@@ -92,6 +89,9 @@ def CS_(real2, imag2):
     omp2 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp2.fit(Q, imag2)
     coefimag = omp2.coef_
+
+    real2 = []
+    imag2 = []
 
     realZ = []
     realQ = coefreal[0]
@@ -129,64 +129,78 @@ def CS_(real2, imag2):
     return myList
 
 
+def Cek():
+    global DataX
+    x = requests.get(
+        'https://bysonics-alpha001.herokuapp.com/rekonstruksiSensor/Lastest')
+    DataX = json.loads(x.text)[0]
+
+
 try:
-    client = pymongo.MongoClient(
-        "mongodb+srv://admin:admin@cluster0.eomgz.mongodb.net/Data_alpha001?retryWrites=true&w=majority")
-    db = client.Data
-    collection = db.Compressed
-    x = collection.delete_many({})
-    x.deleted_count
+    Cek()
+    Id = (DataX["_id"])
+    pId = (DataX["_id"])
     print("connect to MongoDB")
 except:
+    id = []
+    pId = []
     print("Could not connect to MongoDB")
-    exit()
 
 if __name__ == '__main__':
     print("Program Ready")
     i = 0
     while True:
         try:
-            data = collection.find().sort('_id', pymongo.DESCENDING).limit(1)
-            Id = data[0]['_id']
+            Cek()
+            Id = (DataX["_id"])
             if pId != Id:
                 start = time.time()
                 print(f'Terdapat Data Baru, Id ={Id}')
                 Hreal = []
                 Himag = []
                 try:
-                    for X in data:
-                        HrealPPG = (X['PPG']['real'])
-                        HimagPPG = (X['PPG']['imag'])
-                        HrealEKG = (X['EKG']['real'])
-                        HimagEKG = (X['EKG']['imag'])
-                        HrealACCX = (X['ACCX']['real'])
-                        HimagACCX = (X['ACCX']['imag'])
-                        HrealACCY = (X['ACCY']['real'])
-                        HimagACCY = (X['ACCY']['imag'])
-                        HrealACCZ = (X['ACCZ']['real'])
-                        HimagACCZ = (X['ACCZ']['imag'])
-                        HrealEMG = (X['EMG']['real'])
-                        HimagEMG = (X['EMG']['imag'])
-                        HrealSUHU = (X['SUHU']['real'])
-                        HimagSUHU = (X['SUHU']['imag'])
+                    HrealPPG = (DataX["dataPPGReal"])
+                    HimagPPG = (DataX["dataPPGImag"])
+                    HrealEKG = (DataX["dataEKGReal"])
+                    HimagEKG = (DataX["dataEKGImag"])
+                    HrealACCX = (DataX["dataAccelerometer_XReal"])
+                    HimagACCX = (DataX["dataAccelerometer_XImag"])
+                    HrealACCY = (DataX["dataAccelerometer_YReal"])
+                    HimagACCY = (DataX["dataAccelerometer_YImag"])
+                    HrealACCZ = (DataX["dataAccelerometer_ZReal"])
+                    HimagACCZ = (DataX["dataAccelerometer_ZImag"])
+                    HrealEMG = (DataX["dataEMGReal"])
+                    HimagEMG = (DataX["dataEMGImag"])
+                    HrealSUHU = (DataX["dataSuhuReal"])
+                    HimagSUHU = (DataX["dataSuhuImag"])
+                    ID = (DataX["id_rompi"])
                 except:
-                    print("Belum Ada Data PPG")
-                PPG = CS_(HrealPPG, HimagPPG)
-                EKG = CS_(HrealEKG, HimagEKG)
-                AcceX = CS_(HrealACCX, HimagACCX)
-                AcceY = CS_(HrealACCY, HimagACCY)
-                AcceZ = CS_(HrealACCZ, HimagACCZ)
-                EMG = CS_(HrealEMG, HimagEMG)
-                SUHU = CS_(HrealSUHU, HimagSUHU)
+                    print("Belum Ada Data")
+                try:
+                    PPG = CS_(HrealPPG, HimagPPG)
+                    EKG = CS_(HrealEKG, HimagEKG)
+                    AcceX = CS_(HrealACCX, HimagACCX)
+                    AcceY = CS_(HrealACCY, HimagACCY)
+                    AcceZ = CS_(HrealACCZ, HimagACCZ)
+                    SUHU = CS_(HrealSUHU, HimagSUHU)
+                    EMG = [abs(number) if number >=
+                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                except:
+                    print("CS Error")
                 pId = Id
-                print("Kirim")
-                kirim_()
+                try:
+                    kirim_()
+                except:
+                    print("Kirim Error")
                 end = time.time()
                 runTime = end - start
                 print(f"Runtime of the program is {runTime} Second")
             else:
-                os.system('cls')
+                # os.system('cls')
                 print(f'Waiting for new data, Id = {Id}')
         except:
-            # Id = []
-            pId = []
+            print("Error")
+            try:
+                pId = Id
+            except:
+                pId = []
