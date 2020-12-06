@@ -196,7 +196,7 @@ if __name__ == '__main__':
                 runTime = end - start
                 print(f"Runtime of the program is {runTime} Second")
             else:
-                # os.system('cls')
+                os.system('cls')
                 print(f'Waiting for new data, Id = {Id}')
         except:
             print("Error")
