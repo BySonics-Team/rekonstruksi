@@ -135,62 +135,60 @@ except:
     id = []
     pId = []
     print("Could not connect to MongoDB")
-
-if __name__ == '__main__':
-    print("Program Ready")
-    i = 0
-    while True:
-        try:
-            Cek()
-            Id = (DataX["_id"])
-            if pId != Id:
-                start = time.time()
-                print(f'Terdapat Data Baru, Id ={Id}')
-                Hreal = []
-                Himag = []
-                try:
-                    HrealPPG = (DataX["dataPPGReal"])
-                    HimagPPG = (DataX["dataPPGImag"])
-                    HrealEKG = (DataX["dataEKGReal"])
-                    HimagEKG = (DataX["dataEKGImag"])
-                    HrealACCX = (DataX["dataAccelerometer_XReal"])
-                    HimagACCX = (DataX["dataAccelerometer_XImag"])
-                    HrealACCY = (DataX["dataAccelerometer_YReal"])
-                    HimagACCY = (DataX["dataAccelerometer_YImag"])
-                    HrealACCZ = (DataX["dataAccelerometer_ZReal"])
-                    HimagACCZ = (DataX["dataAccelerometer_ZImag"])
-                    HrealEMG = (DataX["dataEMGReal"])
-                    HimagEMG = (DataX["dataEMGImag"])
-                    HrealSUHU = (DataX["dataSuhuReal"])
-                    HimagSUHU = (DataX["dataSuhuImag"])
-                    ID = (DataX["id_rompi"])
-                except:
-                    print("Belum Ada Data")
-                try:
-                    PPG = CS_(HrealPPG, HimagPPG)
-                    EKG = CS_(HrealEKG, HimagEKG)
-                    AcceX = CS_(HrealACCX, HimagACCX)
-                    AcceY = CS_(HrealACCY, HimagACCY)
-                    AcceZ = CS_(HrealACCZ, HimagACCZ)
-                    SUHU = CS_(HrealSUHU, HimagSUHU)
-                    EMG = [abs(number) if number >=
-                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
-                except:
-                    print("CS Error")
-                pId = Id
-                try:
-                    kirim_()
-                except:
-                    print("Kirim Error")
-                end = time.time()
-                runTime = end - start
-                print(f"Runtime of the program is {runTime} Second")
-                print(f'Waiting for new data, Id = {Id}')
-            else:
-                pass
-        except:
-            print("Error")
+ print("Program Ready")
+i = 0
+while True:
+    try:
+        Cek()
+        Id = (DataX["_id"])
+        if pId != Id:
+            start = time.time()
+            print(f'Terdapat Data Baru, Id ={Id}')
+            Hreal = []
+            Himag = []
             try:
-                pId = Id
+                HrealPPG = (DataX["dataPPGReal"])
+                HimagPPG = (DataX["dataPPGImag"])
+                HrealEKG = (DataX["dataEKGReal"])
+                HimagEKG = (DataX["dataEKGImag"])
+                HrealACCX = (DataX["dataAccelerometer_XReal"])
+                HimagACCX = (DataX["dataAccelerometer_XImag"])
+                HrealACCY = (DataX["dataAccelerometer_YReal"])
+                HimagACCY = (DataX["dataAccelerometer_YImag"])
+                HrealACCZ = (DataX["dataAccelerometer_ZReal"])
+                HimagACCZ = (DataX["dataAccelerometer_ZImag"])
+                HrealEMG = (DataX["dataEMGReal"])
+                HimagEMG = (DataX["dataEMGImag"])
+                HrealSUHU = (DataX["dataSuhuReal"])
+                HimagSUHU = (DataX["dataSuhuImag"])
+                ID = (DataX["id_rompi"])
             except:
-                pId = []
+                print("Belum Ada Data")
+            try:
+                PPG = CS_(HrealPPG, HimagPPG)
+                EKG = CS_(HrealEKG, HimagEKG)
+                AcceX = CS_(HrealACCX, HimagACCX)
+                AcceY = CS_(HrealACCY, HimagACCY)
+                AcceZ = CS_(HrealACCZ, HimagACCZ)
+                SUHU = CS_(HrealSUHU, HimagSUHU)
+                EMG = [abs(number) if number >=
+                       200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+            except:
+                print("CS Error")
+            pId = Id
+            try:
+                kirim_()
+            except:
+                print("Kirim Error")
+            end = time.time()
+            runTime = end - start
+            print(f"Runtime of the program is {runTime} Second")
+            print(f'Waiting for new data, Id = {Id}')
+        else:
+            pass
+    except:
+        print("Error")
+        try:
+            pId = Id
+        except:
+            pId = []
