@@ -135,7 +135,8 @@ except:
     id = []
     pId = []
     print("Could not connect to MongoDB")
- print("Program Ready")
+ 
+print("Program Ready")
 i = 0
 while True:
     try:
