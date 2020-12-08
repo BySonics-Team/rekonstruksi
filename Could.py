@@ -80,24 +80,21 @@ def CS_(real2, imag2):
     omp2.fit(Q, imag2)
     coefimag = omp2.coef_
 
-    real2 = []
-    imag2 = []
-
-    realZ = []
     realQ = coefreal[0]
     realW = coefreal[M-1]
     realX = coefreal[1:M-1]
     realY = realX[::-1]
+    realZ = []
     realZ = np.append(realZ, realQ)
     realZ = np.append(realZ, realX)
     realZ = np.append(realZ, realW)
     realZ = np.append(realZ, realY)
 
-    imagZ = []
     imagQ = coefimag[0]
     imagW = coefimag[M-1]
     imagX = coefimag[1:M-1]
     imagY = imagX[::-1]*-1
+    imagZ = []
     imagZ = np.append(imagZ, imagQ)
     imagZ = np.append(imagZ, imagX)
     imagZ = np.append(imagZ, imagW)
@@ -115,6 +112,7 @@ def CS_(real2, imag2):
     arr = np.array(ftx.real)
     arr2 = []
     arr2 = arr.tolist()
+    myList = []
     myList = [int(x) for x in arr2]
     return myList
 
