@@ -1,6 +1,4 @@
 import time
-import os
-import sys
 import requests
 import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
