@@ -62,7 +62,9 @@ def kirim_():
         "dataSuhu": SUHU,
         "dataEKG": EKG,
         "dataPPG": PPG,
-        "dataEMG": EMG
+        "dataEMG": EMG,
+        "dataSPO2": SpO,
+        "dataBPM": HR,
     }
     url_POST = (
         'https://bysonics-alpha001.herokuapp.com/dataAllSensor/save')
@@ -133,7 +135,7 @@ except:
     id = []
     pId = []
     print("Could not connect to MongoDB")
- 
+
 i = 0
 while True:
     try:
@@ -159,6 +161,8 @@ while True:
                 HimagEMG = (DataX["dataEMGImag"])
                 HrealSUHU = (DataX["dataSuhuReal"])
                 HimagSUHU = (DataX["dataSuhuImag"])
+                SpO = (DataX["dataSPO2"])
+                HR = (DataX["dataBPM"])
                 ID = (DataX["id_rompi"])
             except:
                 print("Belum Ada Data")
@@ -176,12 +180,22 @@ while True:
             pId = Id
             try:
                 kirim_()
+                # pass
             except:
                 print("Kirim Error")
             end = time.time()
             runTime = end - start
             print(f"Runtime of the program is {runTime} Second")
             print(f'Waiting for new data, Id = {Id}')
+            # print(PPG)
+            # print(EKG)
+            # print(AcceX[:10])
+            # print(AcceY[:10])
+            # print(AcceZ[:10])
+            # print(SUHU)
+            # print(EMG)
+            print(SpO)
+            print(HR)
         else:
             pass
     except:
