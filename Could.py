@@ -199,10 +199,6 @@ while True:
                 SUHU = CS_(HrealSUHU, HimagSUHU)
                 EMG = [abs(number) if number >=
                        200 else 0 for number in CS_(HrealEMG, HimagEMG)]
-
-                if all(v >= 0 for v in SUHU):
-                    restart_program()
-
             except:
                 print("CS Error")
 
