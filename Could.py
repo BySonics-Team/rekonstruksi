@@ -2,8 +2,9 @@ import time
 import requests
 import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
+from sklearn.linear_model import OrthogonalMatchingPursuitCV
 import json
-
+import gc
 
 Y = 52
 M = 129
@@ -71,7 +72,8 @@ def kirim_():
 
 
 def CS_(real2, imag2):
-
+    gc.collect()
+    
     omp1 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp1.fit(Q, real2)
     coefreal = omp1.coef_
