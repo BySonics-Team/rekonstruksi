@@ -73,10 +73,22 @@ def kirim_():
 
 def CS_(real2, imag2):
     gc.collect()
-
+    
+    Log = 0
+    for x in range(Y):
+        for y in range(M):
+            Q[x][y] = Gaussian[Log]
+            Log += 1
+            
     omp1 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp1.fit(Q, real2)
     coefreal = omp1.coef_
+    
+    Log = 0
+    for x in range(Y):
+        for y in range(M):
+            Q[x][y] = Gaussian[Log]
+            Log += 1
 
     omp2 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp2.fit(Q, imag2)
