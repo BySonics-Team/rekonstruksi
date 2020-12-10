@@ -178,23 +178,8 @@ while True:
                     EMG = [abs(number) if number >=
                            200 else 0 for number in CS_(HrealEMG, HimagEMG)]
 
-                    for x in SUHU:
-                        if x < -1:
-                            tampCS = True
-                        else:
-                            tampCS = False
-
-                    for x in EMG:
-                        if x < -1:
-                            tampCS = True
-                        else:
-                            tampCS = False
-
-                    for x in PPG:
-                        if x < -5000:
-                            tampCS = True
-                        else:
-                            tampCS = False
+                    if all(v >= 0 for v in SUHU):
+                        tampCS = False
 
             except:
                 print("CS Error")
