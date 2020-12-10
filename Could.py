@@ -180,9 +180,19 @@ while True:
 
                     if all(v >= 0 for v in SUHU):
                         tampCS = False
+                    # elif all(v >= 0 for v in PPG):
+                    #     tampCS = False
+                    # elif all(v >= 0 for v in EKG):
+                    #     tampCS = False
+                    # elif all(v >= 0 for v in EMG):
+                    #     tampCS = False
+                    # else:
+                    #     tampCS = True
 
             except:
                 print("CS Error")
+
+            print(SUHU)
             print("CS OK")
             pId = Id
             try:
