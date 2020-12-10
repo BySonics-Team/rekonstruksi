@@ -2,9 +2,9 @@ import time
 import requests
 import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
-from sklearn.linear_model import OrthogonalMatchingPursuitCV
 import json
 import gc
+
 
 Y = 52
 M = 129
@@ -73,7 +73,7 @@ def kirim_():
 
 def CS_(real2, imag2):
     gc.collect()
-    
+
     omp1 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
     omp1.fit(Q, real2)
     coefreal = omp1.coef_
@@ -167,22 +167,38 @@ while True:
             except:
                 print("Belum Ada Data")
             try:
-                while True:
+                tampCS = True
+                while tampCS:
                     PPG = CS_(HrealPPG, HimagPPG)
-                    SUHU = CS_(HrealSUHU, HimagSUHU)
-                    EMG = [abs(number) if number >=
-                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                    EKG = CS_(HrealEKG, HimagEKG)
                     AcceX = CS_(HrealACCX, HimagACCX)
                     AcceY = CS_(HrealACCY, HimagACCY)
                     AcceZ = CS_(HrealACCZ, HimagACCZ)
-                    EKG = CS_(HrealEKG, HimagEKG)
-                    if all(v <= -100 for v in PPG) or all(v <= -100 for v in SUHU) or all(v <= -100 for v in EMG) or all(v <= -100000 for v in EKG) or all(v <= -100000 for v in AcceX) or all(v <= -100000 for v in AcceY) or all(v <= -100000 for v in AcceZ):
-                        print("CS Error")
-                    else:
-                        print("CS OK")
-                        break
+                    SUHU = CS_(HrealSUHU, HimagSUHU)
+                    EMG = [abs(number) if number >=
+                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+
+                    for x in SUHU:
+                        if x < -1:
+                            tampCS = True
+                        else:
+                            tampCS = False
+
+                    for x in EMG:
+                        if x < -1:
+                            tampCS = True
+                        else:
+                            tampCS = False
+
+                    for x in PPG:
+                        if x < -5000:
+                            tampCS = True
+                        else:
+                            tampCS = False
+
             except:
                 print("CS Error")
+            print("CS OK")
             pId = Id
             try:
                 kirim_()
