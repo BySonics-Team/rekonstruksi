@@ -2,7 +2,6 @@ import time
 import requests
 import numpy as np
 from sklearn.linear_model import OrthogonalMatchingPursuit
-from sklearn.linear_model import OrthogonalMatchingPursuitCV
 import json
 import gc
 import os
@@ -87,11 +86,11 @@ def kirim_():
 def CS_(real2, imag2):
     gc.collect()
                 
-    omp1 = OrthogonalMatchingPursuitCV()
+    omp1 = OrthogonalMatchingPursuit()
     omp1.fit(Q, real2)
     coefreal = omp1.coef_
 
-    omp2 = OrthogonalMatchingPursuitCV()
+    omp2 = OrthogonalMatchingPursuit()
     omp2.fit(Q, imag2)
     coefimag = omp2.coef_
 
