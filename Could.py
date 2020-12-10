@@ -48,8 +48,18 @@ for x in range(Y):
     for y in range(M):
         Q[x][y] = Gaussian[Log]
         Log += 1
+        
+        
+def restart_program():
+    """Restarts the current program.
+    Note: this function does not return. Any cleanup action (like
+    saving data) must be done before calling this function."""
+    led.off()
+    print("Auto-reconnect")
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
 
-
+    
 def kirim_():
     data = {
         "id_rompi": "001",
@@ -179,19 +189,17 @@ while True:
             except:
                 print("Belum Ada Data")
             try:
-                tampCS = True
-                while tampCS:
-                    PPG = CS_(HrealPPG, HimagPPG)
-                    EKG = CS_(HrealEKG, HimagEKG)
-                    AcceX = CS_(HrealACCX, HimagACCX)
-                    AcceY = CS_(HrealACCY, HimagACCY)
-                    AcceZ = CS_(HrealACCZ, HimagACCZ)
-                    SUHU = CS_(HrealSUHU, HimagSUHU)
-                    EMG = [abs(number) if number >=
-                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                PPG = CS_(HrealPPG, HimagPPG)
+                EKG = CS_(HrealEKG, HimagEKG)
+                AcceX = CS_(HrealACCX, HimagACCX)
+                AcceY = CS_(HrealACCY, HimagACCY)
+                AcceZ = CS_(HrealACCZ, HimagACCZ)
+                SUHU = CS_(HrealSUHU, HimagSUHU)
+                EMG = [abs(number) if number >=
+                       200 else 0 for number in CS_(HrealEMG, HimagEMG)]
 
-                    if all(v >= 0 for v in SUHU):
-                        tampCS = False
+                if all(v >= 0 for v in SUHU):
+                    restart_program():
 
             except:
                 print("CS Error")
