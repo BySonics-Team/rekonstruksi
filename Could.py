@@ -92,7 +92,7 @@ def CS_(real2, imag2):
             Q[x][y] = Gaussian[Log]
             Log += 1
             
-    omp1 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
+    omp1 = OrthogonalMatchingPursuit()
     omp1.fit(Q, real2)
     coefreal = omp1.coef_
     
@@ -102,7 +102,7 @@ def CS_(real2, imag2):
             Q[x][y] = Gaussian[Log]
             Log += 1
 
-    omp2 = OrthogonalMatchingPursuit(n_nonzero_coefs=M)
+    omp2 = OrthogonalMatchingPursuit()
     omp2.fit(Q, imag2)
     coefimag = omp2.coef_
 
