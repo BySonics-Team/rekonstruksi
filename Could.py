@@ -19,10 +19,10 @@ imagZ = []
 array = []
 i = 0
 urlSensor = ''
-id_rompi: ""
-id_sensor: ""
-id_pasien: ""
-data: ""
+id_rompi = ""
+id_sensor = ""
+id_pasien = ""
+data = ""
 PPG = []
 EKG = []
 EMG = []
@@ -165,14 +165,20 @@ while True:
             except:
                 print("Belum Ada Data")
             try:
-                PPG = CS_(HrealPPG, HimagPPG)
-                EKG = CS_(HrealEKG, HimagEKG)
-                AcceX = CS_(HrealACCX, HimagACCX)
-                AcceY = CS_(HrealACCY, HimagACCY)
-                AcceZ = CS_(HrealACCZ, HimagACCZ)
-                SUHU = CS_(HrealSUHU, HimagSUHU)
-                EMG = [abs(number) if number >=
-                       200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                while True:
+                    PPG = CS_(HrealPPG, HimagPPG)
+                    SUHU = CS_(HrealSUHU, HimagSUHU)
+                    EMG = [abs(number) if number >=
+                           200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                    AcceX = CS_(HrealACCX, HimagACCX)
+                    AcceY = CS_(HrealACCY, HimagACCY)
+                    AcceZ = CS_(HrealACCZ, HimagACCZ)
+                    EKG = CS_(HrealEKG, HimagEKG)
+                    if all(v <= -100 for v in PPG) or all(v <= -100 for v in SUHU) or all(v <= -100 for v in EMG) or all(v <= -100000 for v in EKG) or all(v <= -100000 for v in AcceX) or all(v <= -100000 for v in AcceY) or all(v <= -100000 for v in AcceZ):
+                        print("CS Error")
+                    else:
+                        print("CS OK")
+                        break
             except:
                 print("CS Error")
             pId = Id
