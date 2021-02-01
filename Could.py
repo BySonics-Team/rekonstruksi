@@ -215,6 +215,7 @@ while True:
             pass
     except:
         print("Error")
+        time.sleep(10)
         try:
             pId = Id
         except:
