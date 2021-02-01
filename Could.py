@@ -78,7 +78,7 @@ def kirim_():
         "dataBPM": HR,
     }
     url_POST = (
-        'https://bysonics-alpha001.herokuapp.com/dataAllSensor/save')
+        'https://bysonics-alpha001-tester.herokuapp.com/dataAllSensor/save')
     response = requests.post(url_POST, None, data)
     print(f"Request returned {response.status_code} : '{response.reason}'")
 
