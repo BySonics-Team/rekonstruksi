@@ -66,7 +66,7 @@ def kirim_():
     data = {
         "id_rompi": ID,
         "id_sensor": "All01",
-        "id_pasien": "000001",
+        "id_pasien": ID,
         "dataAccelerometer_X": AcceX,
         "dataAccelerometer_Y": AcceY,
         "dataAccelerometer_Z": AcceZ,
