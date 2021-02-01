@@ -64,7 +64,7 @@ def restart_program():
     
 def kirim_():
     data = {
-        "id_rompi": "001",
+        "id_rompi": ID,
         "id_sensor": "All01",
         "id_pasien": "000001",
         "dataAccelerometer_X": AcceX,
@@ -134,7 +134,7 @@ def CS_(real2, imag2):
 def Cek():
     global DataX
     x = requests.get(
-        'https://bysonics-alpha001.herokuapp.com/rekonstruksiSensor/Lastest')
+        'https://bysonics-alpha001-tester.herokuapp.com/rekonstruksiSensor/Lastest')
     DataX = json.loads(x.text)[0]
 
 
