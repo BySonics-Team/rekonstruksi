@@ -64,6 +64,16 @@ def restart_program():
     
 def kirim_():    
     print("Kirim 1")
+    print(PPG)
+    print(EKG)
+    print(AcceX[:10])
+    print(AcceY[:10])
+    print(AcceZ[:10])
+    print(SUHU)
+    print(EMG)
+    print(SpO)
+    print(HR)
+    print(ID)
     data = {
         "id_rompi": ID,
         "id_sensor": "All01",
@@ -207,15 +217,6 @@ while True:
             runTime = end - start
             print(f"Runtime of the program is {runTime} Second")
             print(f'Waiting for new data, Id = {Id}')
-            # print(PPG)
-            # print(EKG)
-            # print(AcceX[:10])
-            # print(AcceY[:10])
-            # print(AcceZ[:10])
-            # print(SUHU)
-            # print(EMG)
-            print(SpO)
-            print(HR)
         else:
             pass
     except:
