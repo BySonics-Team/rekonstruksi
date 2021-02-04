@@ -141,6 +141,7 @@ def Cek():
     x = requests.get(
         'https://bysonics-alpha002-v1.herokuapp.com/rekonstruksiSensor/Lastest')
     DataX = json.loads(x.text)[0]
+    print(DataX)
 
 
 try:
@@ -209,16 +210,16 @@ while True:
             print(f"Runtime of the program is {runTime} Second")
             print(f'Waiting for new data, Id = {Id}')
             
-            print(PPG[:10])
-            print(EKG[:10])
-            print(AcceX[:10])
-            print(AcceY[:10])
-            print(AcceZ[:10])
-            print(SUHU[:10])
-            print(EMG[:10])
-            print(SpO)
-            print(HR)
-            print(ID)
+#             print(PPG[:10])
+#             print(EKG[:10])
+#             print(AcceX[:10])
+#             print(AcceY[:10])
+#             print(AcceZ[:10])
+#             print(SUHU[:10])
+#             print(EMG[:10])
+#             print(SpO)
+#             print(HR)
+#             print(ID)
         else:
             pass
     except:
