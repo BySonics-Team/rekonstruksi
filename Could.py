@@ -63,17 +63,6 @@ def restart_program():
 
     
 def kirim_():  
-    print("Kirim 1")  
-    print(PPG[:10])
-    print(EKG[:10])
-    print(AcceX[:10])
-    print(AcceY[:10])
-    print(AcceZ[:10])
-    print(SUHU[:10])
-    print(EMG[:10])
-    print(SpO)
-    print(HR)
-    print(ID)
     data = {
         "id_rompi": "002",
         "id_sensor": "All01",
@@ -88,14 +77,10 @@ def kirim_():
         "dataSPO2": SpO,
         "dataBPM": HR
     }
-    print("Kirim 2")
     url_POST = (
         'https://bysonics-alpha002-v1.herokuapp.com/dataAllSensor/save')
-    print("Kirim 3")
     response = requests.post(url_POST, None, data)
-    print("Kirim 4")
     print(f"Request returned {response.status_code} : '{response.reason}'")
-    print("Kirim 5")
 
 
 def CS_(real2, imag2):
