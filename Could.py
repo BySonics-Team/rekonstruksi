@@ -64,17 +64,7 @@ def restart_program():
     
 def kirim_():    
     print("Kirim 1")
-    print(PPG[:10])
-    print(EKG[:10])
-    print(AcceX[:10])
-    print(AcceY[:10])
-    print(AcceZ[:10])
-    print(SUHU[:10])
-    print(EMG[:10])
-    print(SpO)
-    print(HR)
-    print(ID)
-    data = {
+        data = {
         "id_rompi": ID,
         "id_sensor": "All01",
         "id_pasien": ID,
@@ -191,6 +181,16 @@ while True:
                 SpO = (DataX["dataSPO2"])
                 HR = (DataX["dataBPM"])
                 ID = (DataX["id_rompi"])
+                print(PPG[:10])
+                print(EKG[:10])
+                print(AcceX[:10])
+                print(AcceY[:10])
+                print(AcceZ[:10])
+                print(SUHU[:10])
+                print(EMG[:10])
+                print(SpO)
+                print(HR)
+                print(ID)
             except:
                 print("Belum Ada Data")
             try:
