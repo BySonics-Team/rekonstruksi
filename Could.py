@@ -181,16 +181,7 @@ while True:
                 SpO = (DataX["dataSPO2"])
                 HR = (DataX["dataBPM"])
                 ID = (DataX["id_rompi"])
-                print(PPG[:10])
-                print(EKG[:10])
-                print(AcceX[:10])
-                print(AcceY[:10])
-                print(AcceZ[:10])
-                print(SUHU[:10])
-                print(EMG[:10])
-                print(SpO)
-                print(HR)
-                print(ID)
+                print("Ada Data")
             except:
                 print("Belum Ada Data")
             try:
@@ -202,11 +193,11 @@ while True:
                 SUHU = CS_(HrealSUHU, HimagSUHU)
                 EMG = [abs(number) if number >=
                        200 else 0 for number in CS_(HrealEMG, HimagEMG)]
+                print("CS OK")
             except:
                 print("CS Error")
 
             #print(SUHU)
-            print("CS OK")
             pId = Id
             try:
                 kirim_()
@@ -217,6 +208,17 @@ while True:
             runTime = end - start
             print(f"Runtime of the program is {runTime} Second")
             print(f'Waiting for new data, Id = {Id}')
+            
+            print(PPG[:10])
+            print(EKG[:10])
+            print(AcceX[:10])
+            print(AcceY[:10])
+            print(AcceZ[:10])
+            print(SUHU[:10])
+            print(EMG[:10])
+            print(SpO)
+            print(HR)
+            print(ID)
         else:
             pass
     except:
