@@ -76,7 +76,7 @@ def kirim_():
         "dataPPG": PPG,
         "dataEMG": EMG,
         "dataSPO2": SpO,
-        "dataBPM": HR,
+        "dataBPM": HR
     }
     print("Kirim 2")
     url_POST = (
