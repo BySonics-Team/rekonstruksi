@@ -64,13 +64,13 @@ def restart_program():
     
 def kirim_():    
     print("Kirim 1")
-    print(PPG)
-    print(EKG)
+    print(PPG[:10])
+    print(EKG[:10])
     print(AcceX[:10])
     print(AcceY[:10])
     print(AcceZ[:10])
-    print(SUHU)
-    print(EMG)
+    print(SUHU[:10])
+    print(EMG[:10])
     print(SpO)
     print(HR)
     print(ID)
