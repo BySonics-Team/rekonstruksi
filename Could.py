@@ -64,6 +64,16 @@ def restart_program():
     
 def kirim_():  
     print("Kirim 1")  
+    print(PPG[:10])
+    print(EKG[:10])
+    print(AcceX[:10])
+    print(AcceY[:10])
+    print(AcceZ[:10])
+    print(SUHU[:10])
+    print(EMG[:10])
+    print(SpO)
+    print(HR)
+    print(ID)
     data = {
         "id_rompi": "002",
         "id_sensor": "All01",
@@ -141,7 +151,7 @@ def Cek():
     x = requests.get(
         'https://bysonics-alpha002-v1.herokuapp.com/rekonstruksiSensor/Lastest')
     DataX = json.loads(x.text)[0]
-    print(DataX)
+#     print(DataX)
 
 
 try:
@@ -181,7 +191,7 @@ while True:
                 HimagSUHU = (DataX["dataSuhuImag"])
                 SpO = (DataX["dataSPO2"])
                 HR = (DataX["dataBPM"])
-                ID = (DataX["id_rompi"])
+                ID = (DataX["id_pasien"])
                 print("Ada Data")
             except:
                 print("Belum Ada Data")
@@ -208,18 +218,7 @@ while True:
             end = time.time()
             runTime = end - start
             print(f"Runtime of the program is {runTime} Second")
-            print(f'Waiting for new data, Id = {Id}')
-            
-#             print(PPG[:10])
-#             print(EKG[:10])
-#             print(AcceX[:10])
-#             print(AcceY[:10])
-#             print(AcceZ[:10])
-#             print(SUHU[:10])
-#             print(EMG[:10])
-#             print(SpO)
-#             print(HR)
-#             print(ID)
+            print(f'Waiting for new data, Id = {Id}')  
         else:
             pass
     except:
