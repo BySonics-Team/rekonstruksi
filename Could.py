@@ -62,7 +62,8 @@ def restart_program():
     os.execl(python, python, * sys.argv)
 
     
-def kirim_():
+def kirim_():    
+    print("Kirim")
     data = {
         "id_rompi": ID,
         "id_sensor": "All01",
