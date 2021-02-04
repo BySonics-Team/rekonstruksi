@@ -65,9 +65,9 @@ def restart_program():
 def kirim_():    
     print("Kirim 1")
     data = {
-        "id_rompi": "000001",
+        "id_rompi": ID,
         "id_sensor": "All01",
-        "id_pasien": "000001",
+        "id_pasien": ID,
         "dataAccelerometer_X": AcceX,
         "dataAccelerometer_Y": AcceY,
         "dataAccelerometer_Z": AcceZ,
