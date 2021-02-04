@@ -90,7 +90,7 @@ def kirim_():
     }
     print("Kirim 2")
     url_POST = (
-        'https://bysonics-alpha001-v002.herokuapp.com/dataAllSensor/save')
+        'https://bysonics-alpha002-v1.herokuapp.com/dataAllSensor/save')
     print("Kirim 3")
     response = requests.post(url_POST, None, data)
     print("Kirim 4")
@@ -149,7 +149,7 @@ def CS_(real2, imag2):
 def Cek():
     global DataX
     x = requests.get(
-        'https://bysonics-alpha001-v002.herokuapp.com/rekonstruksiSensor/Lastest')
+        'https://bysonics-alpha002-v1.herokuapp.com/rekonstruksiSensor/Lastest')
     DataX = json.loads(x.text)[0]
 
 
