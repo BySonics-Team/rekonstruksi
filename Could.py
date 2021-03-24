@@ -78,7 +78,7 @@ def kirim_():
         "dataBPM": HR
     }
     url_POST = (
-        'https://bysonics-alpha002-v1.herokuapp.com/dataAllSensor/save')
+        'https://bysonicsalpha0003.herokuapp.com/dataAllSensor/save')
     response = requests.post(url_POST, None, data)
     print(f"Request returned {response.status_code} : '{response.reason}'")
 
@@ -134,7 +134,7 @@ def CS_(real2, imag2):
 def Cek():
     global DataX
     x = requests.get(
-        'https://bysonics-alpha002-v1.herokuapp.com/rekonstruksiSensor/Lastest')
+        'https://bysonicsalpha0003.herokuapp.com/rekonstruksiSensor/Lastest')
     DataX = json.loads(x.text)[0]
 #     print(DataX)
 
